@@ -1,0 +1,697 @@
+{
+ "set": "tuning",
+ "version": "1",
+ "created": "2026-11-17",
+ "label_policy": "A past ticket is 'useful' when a careful support agent would say it describes the same problem (the same symptom in the same product area), so its recorded resolution is a sensible first thing to check. Sharing a topic or vocabulary, a different symptom, or a different product is not enough. Labels are judgements made by reading the tickets; they are not ground truth from the customer.",
+ "separation": "Queries are built only around historical tickets with an odd id number, plus the four supplied examples.",
+ "queries": [
+  {
+   "id": "tune-01",
+   "type": "strong_match",
+   "subject": "Not receiving SMS verification codes for two-factor login",
+   "description": "User switched on two-factor authentication last week, but the text message with the verification code never shows up on their phone. They have tried resending it several times with no luck.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1003"
+   ],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "T-1003 describes the same symptom: customer 'enabled two-factor authentication but says the SMS verification code never arrives on their phone', so its carrier-blocking / TOTP workaround is the first thing to check.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1003"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "Same symptom as T-1003: two-factor enabled but 'the SMS verification code never arrives on their phone'."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-02",
+   "type": "strong_match",
+   "subject": "Duplicate account entries showing up after manual re-sync",
+   "description": "Customer triggered a manual re-sync yesterday and now each of their accounts is listed twice in the dashboard. They want the duplicates cleaned up.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1103"
+   ],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1303"
+   ],
+   "expected_status": "useful_matches",
+   "rationale": "T-1103: 'After manually triggering a re-sync, the customer now sees duplicate entries for the same accounts in their dashboard' is the same problem. T-1303 only shares the word 'duplicate' ('two identical charges on their card statement') and is a billing issue.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1103"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1103 is 'duplicate entries for the same accounts' 'after manually triggering a re-sync', which is exactly the query."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-03",
+   "type": "strong_match",
+   "subject": "Two identical charges on card for one month",
+   "description": "Customer's card statement shows the monthly subscription charge twice for the same billing cycle, same amount both times. They are asking why this happened and want it sorted out.",
+   "product": "Billing",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1303"
+   ],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1103"
+   ],
+   "expected_status": "useful_matches",
+   "rationale": "T-1303: 'two identical charges on their card statement for what should be a single monthly charge' is the same symptom. T-1103 ('duplicate entries for the same accounts') shares only the duplicate vocabulary and concerns sync data.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1303"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1303 describes 'two identical charges on their card statement for what should be a single monthly charge'."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-04",
+   "type": "strong_match",
+   "subject": "Weekly scheduled report email no longer being delivered",
+   "description": "Customer normally gets a summary report by email every Monday, but nothing has come through for the last three weeks. They checked spam and say nothing changed on their mail side.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1403"
+   ],
+   "acceptable_related": [
+    "T-1604"
+   ],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "T-1403: 'used to receive a weekly summary report by email every Monday, but hasn't gotten one in 3 weeks' is the same problem. T-1604 is only related context because there the 'scheduled reports are arriving hours late', not missing altogether.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1403"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1403 is the 'weekly summary report by email every Monday' that 'hasn't gotten one in 3 weeks'; T-1604 is only late delivery, a different symptom."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-05",
+   "type": "strong_match",
+   "subject": "New SSO users are being given admin role",
+   "description": "Every user who signs in through SSO for the first time is created with admin access instead of the standard member role. The customer's IT lead noticed it during an access review.",
+   "product": "SSO",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1505"
+   ],
+   "acceptable_related": [
+    "T-1501",
+    "T-1002"
+   ],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "T-1505: 'New users signing in via SSO are all being given admin access instead of the standard member role' is the same symptom. T-1501 (new user 'auto-assigned to a role with no dashboard permissions') and T-1002 ('SSO login redirects to blank page') share the area but describe different symptoms.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1505"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1505: 'New users signing in via SSO are all being given admin access instead of the standard member role'."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-06",
+   "type": "strong_match",
+   "subject": "Old API key still accepted after we regenerated it",
+   "description": "We regenerated our API key this morning for security reasons, but calls made with the previous key are still authenticating successfully. Shouldn't the old one stop working straight away?",
+   "product": "API",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1705"
+   ],
+   "acceptable_related": [
+    "T-1502"
+   ],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "T-1705: 'regenerated their API key for security reasons but noticed the old key still authenticates successfully' is the same problem. T-1502 ('the user still appears able to log in' after deactivation) is a similar revocation theme but about user sessions, not API keys.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1705"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1705: 'regenerated their API key for security reasons but noticed the old key still authenticates successfully'."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-07",
+   "type": "paraphrase",
+   "subject": "Keep getting bounced to the sign-in screen while working",
+   "description": "Our analysts have to re-enter their credentials about four times an hour, even when they are in the middle of editing a board. It hits everyone in our organisation, whatever browser they use.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1005"
+   ],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "Re-entering credentials about four times an hour while working is the T-1005 symptom: 'being logged out every 15 minutes even while actively using the dashboard', resolved via the 'org-level session timeout setting'.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1005"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "Re-entering credentials 'about four times an hour' while editing matches T-1005 'logged out every 15 minutes even while actively using the dashboard', and 'everyone in our organisation' fits its org-level timeout."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-08",
+   "type": "paraphrase",
+   "subject": "Income graph comes up as a plain rectangle",
+   "description": "The big earnings graph at the top of our home view has nothing drawn inside its frame: no columns, no scale, no legend. The other tiles on the same screen look normal.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1201"
+   ],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1205"
+   ],
+   "expected_status": "useful_matches",
+   "rationale": "Same problem as T-1201: 'main revenue chart on the dashboard renders as an empty white box with no bars or axis labels'. T-1205 is a different symptom ('loading spinner that never resolves' for the whole dashboard), whereas here the other tiles render.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1201"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "The earnings graph with 'no columns, no scale, no legend' is T-1201's revenue chart rendering as 'an empty white box with no bars or axis labels'."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-09",
+   "type": "paraphrase",
+   "subject": "Asked to pay for more licences than we have staff",
+   "description": "This month's statement lists 40 licences, yet only 31 people at our company still have working accounts; we offboarded nine leavers back in the spring. Please look into why the number is wrong.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1301"
+   ],
+   "acceptable_related": [
+    "T-1304"
+   ],
+   "decoys": [
+    "T-1303"
+   ],
+   "expected_status": "useful_matches",
+   "rationale": "Same problem as T-1301: 'latest invoice bills for 25 seats but they say they only have 18 active users' (deactivated accounts still counted). T-1304 ('billed at the old, higher rate' after a downgrade) is related overbilling context; T-1303 ('two identical charges') is a different symptom.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1301"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "Billed for 40 licences against 31 working accounts after offboarding matches T-1301 'bills for 25 seats but they say they only have 18 active users'."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-10",
+   "type": "paraphrase",
+   "subject": "Recent hire's home screen has nothing to open",
+   "description": "A colleague who joined us on Monday accepted her invitation and gets in without trouble, but there are no boards for her to open; the listing is just bare and no warning pops up. The rest of us see all of them.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1501"
+   ],
+   "acceptable_related": [
+    "T-1505"
+   ],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "Same problem as T-1501: 'A newly invited team member logs in successfully but sees an empty dashboard list with no error message'. T-1505 is related only because it also concerns a wrong default role ('given admin access instead of the standard member role'), with the opposite symptom.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1501"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1501: a newly invited member 'logs in successfully but sees an empty dashboard list with no error message', the same as 'no boards for her to open ... no warning pops up'."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-11",
+   "type": "paraphrase",
+   "subject": "Every screen lags badly since our big import",
+   "description": "Since we loaded roughly 3.5M rows into the account, clicking anywhere (settings, menus, reports) takes ages to respond. It is not limited to a single view; the whole product feels like wading through mud.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1603"
+   ],
+   "acceptable_related": [
+    "T-1601",
+    "T-1605"
+   ],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "Same problem as T-1603: 'Customer with over 2 million records reports the entire application becomes sluggish across all pages, not just one dashboard'. T-1601 ('main dashboard consistently takes 30+ seconds') and T-1605 ('in-app search feature times out') are large-account slowness limited to one feature, so related only.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1603"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "3.5M rows and 'not limited to a single view' matches T-1603 'sluggish across all pages, not just one dashboard'; T-1601 and T-1602 are single-dashboard or filter slowness."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-12",
+   "type": "paraphrase",
+   "subject": "Some of your HTTP callbacks never reach our server",
+   "description": "Our listener URL gets the majority of the notifications you send, but whenever we have a burst of activity a handful simply never turn up, and nothing is logged as an error on our side. Is there a way to see what was actually sent?",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1701"
+   ],
+   "acceptable_related": [
+    "T-1704"
+   ],
+   "decoys": [
+    "T-1703"
+   ],
+   "expected_status": "useful_matches",
+   "rationale": "Same problem as T-1701: endpoint 'receives webhook events successfully most of the time but silently misses some events during high-traffic periods'. T-1704 ('field ... sometimes missing from the webhook payload') is related webhook context; T-1703 ('intermittent 500 errors on an endpoint') is a different symptom.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1701"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1701: endpoint gets webhooks 'most of the time but silently misses some events during high-traffic periods', and its fix added an inspectable delivery log; T-1704 is missing fields, not missing deliveries."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-13",
+   "type": "misleading",
+   "subject": "Password reset email never arrives in customer's inbox",
+   "description": "Customer clicks 'forgot password' on the login page and is told a reset link has been sent, but no email arrives, including in spam. They have tried three times over the past hour, so they cannot even start the reset.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1001",
+    "T-1003",
+    "T-1403"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1001 is about a customer who did receive the link ('reset their password via the email link but the new password is rejected'), so its copy-paste advice does not help. T-1003 ('SMS verification code never arrives') and T-1403 ('weekly summary report by email' stopped) share the non-arrival wording but concern other channels and features.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "The 'no email arrives' symptom has no match: T-1001 is a new password being rejected after a reset email that did arrive, and T-1003 is SMS 2FA codes, a different feature."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-14",
+   "type": "misleading",
+   "subject": "Pie chart segment colours change on every reload",
+   "description": "On the category breakdown pie chart the same segment gets a different colour each time the dashboard is reloaded. It makes the screenshots in our monthly deck inconsistent.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1203"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1203 shares the pie chart and segments but is a rounding problem ('segments of a category breakdown pie chart sum to 97% instead of 100%'); its fix to 'allocate the remainder to the largest segment' says nothing about colours.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "The segment 'gets a different colour each time' is a different symptom from T-1203, where pie chart percentages 'sum to 97% instead of 100%'; they only share the chart."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-15",
+   "type": "misleading",
+   "subject": "Switching from annual plan back to monthly billing mid-term",
+   "description": "Customer is six months into an annual plan and wants to move to monthly billing instead. They are asking whether the unused months would be credited and how the monthly price compares.",
+   "product": "Billing",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [
+    "T-1304"
+   ],
+   "decoys": [
+    "T-1305"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1305 shares 'annual billing' and 'monthly' but is about a '15% discount' where 'the checkout total shows the full monthly-equivalent price'; nothing here failed at checkout. T-1304 ('plan downgrade ... billed at the old, higher rate') is a plan-change topic only, not a policy question about switching cycles.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "This is a how-to question about moving 'to monthly billing' and crediting unused months; T-1305 (annual discount not applied at checkout) and T-1304 (downgrade not reflected in the invoice) are different billing faults."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-16",
+   "type": "misleading",
+   "subject": "Search finds nothing for references containing a hyphen",
+   "description": "The in-app search responds straight away, but looking up a reference such as INV-2291 returns zero results even though the record is in our ticket history. Searching for 2291 on its own finds it.",
+   "product": "Search",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1605"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1605 shares 'in-app search' and 'ticket history' but its symptom is that search 'times out instead of returning results', fixed with 'a full-text search index'; here search is fast and the problem is matching hyphenated terms.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "Search 'responds straight away' but 'returns zero results' for a hyphenated reference, whereas T-1605 is the search timing out on large history, a different symptom."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-17",
+   "type": "negation",
+   "subject": "SMS two-factor code arrives but is rejected as invalid",
+   "description": "The SMS verification code reaches the customer's phone within seconds, so delivery is fine. When they type it in, the login page says the code is invalid, and it has happened with five codes in a row.",
+   "product": "",
+   "error_detail": "Invalid verification code",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1003",
+    "T-1001"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1003's key symptom is negated: there 'the SMS verification code never arrives', resolved by the carrier 'blocking messages'; here the code arrives. T-1001 shares 'rejected' but is about a new password after an email reset, not a 2FA code.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "The code 'reaches the customer's phone within seconds' but is 'invalid', the opposite of T-1003 where the SMS 'never arrives'; its carrier-blocking resolution does not apply."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-18",
+   "type": "negation",
+   "subject": "Weekly report email arrives but its charts are broken",
+   "description": "The Monday summary report still lands in the customer's inbox on time every week. The problem is that the charts inside the email show as broken image icons in Outlook, so only the text is readable.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1403",
+    "T-1201"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1403's key symptom is negated: there the customer 'hasn't gotten one in 3 weeks' because the job 'silently failed after the customer's dashboard was renamed'; here the email arrives on time. T-1201 is an in-dashboard chart rendering as 'an empty white box', not images in an email client.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "The report 'still lands in the customer's inbox on time' with broken chart images, so T-1403 (email stopped arriving) and T-1604 (arriving late) are different symptoms."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-19",
+   "type": "different_product",
+   "subject": "Zendesk integration failing with authentication error since yesterday",
+   "description": "Customer's Zendesk integration had been running without issues for about a year and has now started failing with an authentication error on every run. Nothing was changed on their side of the connection as far as they know.",
+   "product": "Zendesk integration",
+   "error_detail": "authentication error",
+   "expected_useful": [],
+   "acceptable_related": [
+    "T-1105",
+    "T-1101"
+   ],
+   "decoys": [],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1105 has the same pattern ('started failing with an authentication error after working fine for months') but for HubSpot, and its cause was 'HubSpot had rotated their OAuth scopes'; T-1101's cause was a 'Salesforce API token' expiring. Zendesk appears in no historical ticket, so both are related context only.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "medium",
+    "note": "The query names the 'Zendesk integration'; T-1105 has the same 'authentication error after working fine for months' symptom but for HubSpot, so under the different-integration rule it is related context only."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-20",
+   "type": "different_product",
+   "subject": "Pipedrive deal data not updating in revenue dashboard",
+   "description": "Customer's Pipedrive deal data has not updated in the revenue dashboard for the past three days. The integration page shows every run since Friday marked as failed.",
+   "product": "Pipedrive integration",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [
+    "T-1101",
+    "T-1105",
+    "T-1102",
+    "T-1104"
+   ],
+   "decoys": [],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1101 has the same pattern ('Salesforce opportunity data hasn't updated in the revenue dashboard for the past 3 days') but its resolution is specific to the customer's 'Salesforce API token'. Pipedrive appears nowhere in the history; T-1102 ('shown in progress status for over 48 hours') and T-1104 ('even though the sync ran successfully') describe different sync states than failed runs.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "medium",
+    "note": "The query names 'Pipedrive deal data'; T-1101 is the same stale revenue dashboard for 3 days but for Salesforce, so it is related context only under the different-integration rule."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-21",
+   "type": "unfamiliar",
+   "subject": "iPhone app crashes immediately after opening",
+   "description": "Since updating to the latest version from the App Store, the mobile app closes straight back to the home screen a second after the logo appears. Reinstalling did not help; this is on an iPhone 15 running iOS 18.",
+   "product": "iOS mobile app",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1205"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "No historical ticket mentions a native mobile app or a crash. The nearest wording, T-1205 ('main dashboard shows a loading spinner that never resolves'), is a web dashboard blocked by a slow widget query, not an app crash on launch.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "No historical ticket concerns the 'mobile app' or a crash on launch; all 40 are about the web dashboard, sync, billing, export, permissions, performance or API."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-22",
+   "type": "unfamiliar",
+   "subject": "Request to move our account data to EU region",
+   "description": "Our legal team needs all of our account data stored in an EU data centre for compliance reasons; we are currently hosted in the US. Can the data residency region be changed, and what is the process?",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "no_strong_match",
+   "rationale": "None of the 40 tickets concerns hosting region, data residency or compliance-driven data location; the history covers auth, sync, render, billing, export, permissions, performance and API faults only.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "A request to change the 'data residency region' to the EU has no counterpart in the 40 tickets."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-23",
+   "type": "unfamiliar",
+   "subject": "Screen reader cannot read values in dashboard charts",
+   "description": "A visually impaired colleague uses NVDA, and the charts on the dashboard are announced only as 'graphic' with no values or labels read out. Is there an accessible table view or alt text for the figures?",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1201",
+    "T-1203"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "No ticket covers accessibility or screen readers. T-1201 ('renders as an empty white box with no bars or axis labels') and T-1203 ('segments ... sum to 97% instead of 100%') share chart vocabulary but are visual rendering bugs whose fixes do not address assistive technology.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "Charts 'announced only as graphic' by a screen reader is an accessibility issue; the render tickets (T-1201 to T-1205) cover visual rendering faults only."
+   },
+   "agreed": true
+  },
+  {
+   "id": "tune-24",
+   "type": "vague",
+   "subject": "Not working, please help",
+   "description": "",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "insufficient_input",
+   "rationale": "Four generic words with no product area, symptom or feature named; nothing in the query can be tied to the wording of any historical ticket, so no one could search on it.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "insufficient_input",
+    "confidence": "high",
+    "note": "'Not working, please help' with an empty description names no product area or symptom to search on."
+   },
+   "agreed": true
+  },
+  {
+   "id": "supplied-NT-1",
+   "subject": "Can't log in, password reset email never arrives",
+   "description": "A customer requested a password reset an hour ago and says the email still hasn't shown up, even after checking spam.",
+   "product": "",
+   "error_detail": "",
+   "type": "misleading",
+   "expected_useful": [],
+   "decoys": [
+    "T-1001"
+   ],
+   "acceptable_related": [
+    "T-1001",
+    "T-1003"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "The reset email never arrives; in T-1001 the email arrived and the new password was rejected, so its fix does not apply.",
+   "label_source": "supplied example ticket, text unchanged; labelled by reading during problem analysis",
+   "reviewer": null,
+   "agreed": true
+  },
+  {
+   "id": "supplied-NT-2",
+   "subject": "Chart shows nothing for the revenue tab",
+   "description": "The revenue tab on the main dashboard is completely empty for this customer, no bars, no error message, just white space.",
+   "product": "",
+   "error_detail": "",
+   "type": "strong_match",
+   "expected_useful": [
+    "T-1201"
+   ],
+   "decoys": [],
+   "acceptable_related": [],
+   "expected_status": "useful_matches",
+   "rationale": "Same symptom as T-1201: the revenue chart is an empty white area with no bars.",
+   "label_source": "supplied example ticket, text unchanged; labelled by reading during problem analysis",
+   "reviewer": null,
+   "agreed": true
+  },
+  {
+   "id": "supplied-NT-3",
+   "subject": "Getting charged twice this month",
+   "description": "Customer's card statement shows two charges for what should be a single monthly subscription payment.",
+   "product": "",
+   "error_detail": "",
+   "type": "strong_match",
+   "expected_useful": [
+    "T-1303"
+   ],
+   "decoys": [],
+   "acceptable_related": [],
+   "expected_status": "useful_matches",
+   "rationale": "Same symptom as T-1303: two charges for one monthly payment.",
+   "label_source": "supplied example ticket, text unchanged; labelled by reading during problem analysis",
+   "reviewer": null,
+   "agreed": true
+  },
+  {
+   "id": "supplied-NT-4",
+   "subject": "Our data warehouse integration with Snowflake is failing",
+   "description": "Customer set up a new integration to sync data into their Snowflake warehouse and it's failing with an unclear connection error. This is a newer integration type we haven't seen many tickets about yet.",
+   "product": "",
+   "error_detail": "",
+   "type": "unfamiliar",
+   "expected_useful": [],
+   "decoys": [
+    "T-1105"
+   ],
+   "acceptable_related": [
+    "T-1105",
+    "T-1101",
+    "T-1102"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "The starter README states this ticket has no close historical match; no past ticket mentions Snowflake or a warehouse.",
+   "label_source": "supplied example ticket, text unchanged; labelled by reading during problem analysis",
+   "reviewer": null,
+   "agreed": true
+  }
+ ]
+}

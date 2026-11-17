@@ -1,0 +1,15 @@
+flowchart TB
+  UI["React and TypeScript interface<br/>Ticket entry, comparison cards, explicit save and summary"]
+  API["FastAPI<br/>Input validation, limits, structured errors and request IDs"]
+  UI <-->|HTTP requests and responses| API
+  API -->|search| ENG["Immutable SearchEngine snapshot<br/>Exact text; TF-IDF and local MiniLM<br/>RRF and relevance policy; comparison cards"]
+  API -->|explicit save| SAVE["TicketService<br/>Required fields and confirmation<br/>Submission ID and revision check"]
+  API -->|explicit summary| SUM["SummaryService<br/>Signed ordered source references<br/>Canonical revisions and validated output"]
+  STORE[("JSON seed plus saved JSON OR PostgreSQL<br/>Pinned local model and embedding artifacts")]
+  STORE -->|startup and refresh| ENG
+  SAVE -->|atomic write then rebuild snapshot| STORE
+  STORE -->|canonical source records| SUM
+  SUM <-->|HTTPS structured summary| LLM["Optional OpenAI Responses API<br/>No tools or ticket-write permission"]
+  API -->|request and operation metadata| OBS["JSON stdout logs<br/>Health and snapshot readiness"]
+  SAVE -->|save and indexing events| OBS
+  SUM -->|status through API errors| OBS

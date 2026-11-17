@@ -1,0 +1,15 @@
+flowchart TB
+  INPUT["Ticket text and optional ID"] -->|POST /api/search| VALIDATE["Validate fields and limits<br/>Compare exact subject and description"]
+  VALIDATE -->|exact text found| EXACT["Return historical evidence<br/>No similarity work"]
+  VALIDATE -->|no exact text and sufficient detail| MATCH["TF-IDF cosine and local embedding cosine<br/>Top 10 per retriever; RRF; relevance policy"]
+  VALIDATE -->|too vague| VAGUE["Return insufficient_input"]
+  EXACT -->|stored evidence| OUT["Return up to 3 or 5 main cards<br/>Human reviews and performs support work"]
+  MATCH -->|labels and evidence| OUT
+  OUT -->|agent clicks summarize| SUMMARY["Verify signed sources<br/>Call LLM; validate; recheck revisions<br/>No mutation"]
+  OUT -->|agent resolves and explicitly saves| SAVE["POST /api/tickets<br/>Validate form and confirmation<br/>Check idempotency and revision"]
+  SAVE -->|insert or approved revision replacement| COMMIT["Atomic record and submission write"]
+  COMMIT -->|persisted| INDEX["Build complete replacement search snapshot"]
+  INDEX -->|usable| SUCCESS["Swap snapshot; read back; log indexed result"]
+  INDEX -->|failed| FAILED["Record remains saved<br/>Keep old snapshot; log failed indexing"]
+  NOTE["Current gap: save has no similarity, tenant or business-identity gate"]
+  NOTE -.->|applies to| SAVE

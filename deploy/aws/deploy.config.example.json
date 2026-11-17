@@ -1,0 +1,49 @@
+{
+  "_readme": "Copy this file to deploy.config.json and edit the copy. An empty string means 'resolve automatically'. Every field is described in DEPLOY_AWS.md, section 'Configuration reference'. This file holds no secrets; never add access keys to it.",
+
+  "awsProfile": "",
+  "region": "",
+  "accountId": "",
+
+  "projectTag": "ticket-similarity",
+
+  "ecrRepositoryName": "ticket-similarity",
+  "ecrScanOnPush": true,
+  "ecrApplyLifecyclePolicy": true,
+
+  "serviceName": "ticket-similarity",
+  "clusterName": "default",
+  "taskExecutionRoleName": "ticket-similarity-ecs-task-execution",
+  "infrastructureRoleName": "ticket-similarity-ecs-express-infra",
+
+  "containerPort": 8080,
+  "healthCheckPath": "/ready",
+  "cpu": "1024",
+  "memory": "2048",
+  "cpuArchitecture": "X86_64",
+
+  "minTaskCount": 1,
+  "maxTaskCount": 2,
+  "autoScalingMetric": "AVERAGE_CPU",
+  "autoScalingTargetValue": 60,
+
+  "_readme_environment": "SAVE_ENABLED is 'false' because these scripts run the container with JSON ticket storage (TICKET_STORE defaults to json) on Fargate, whose disk is temporary and separate for each task: saved tickets would vanish whenever a task is replaced, and with two tasks a retried save could reach the other task and create a second ticket. The scripts refuse to deploy with saving enabled unless TICKET_STORE is 'postgresql'. See DEPLOY_AWS.md, section 'Persistence of saved tickets'.",
+  "environment": {
+    "PORT": "8080",
+    "LOG_LEVEL": "INFO",
+    "MAX_CONCURRENT_SEARCHES": "4",
+    "SAVE_ENABLED": "false"
+  },
+
+  "logGroupName": "",
+  "logStreamPrefix": "ecs",
+  "logRetentionDays": 14,
+
+  "deployByDigest": true,
+  "deployTimeoutMinutes": 30,
+
+  "dockerfilePath": "Dockerfile",
+  "dockerBuildContext": ".",
+  "dockerPlatform": "linux/amd64",
+  "dockerDisableProvenance": true
+}

@@ -1,0 +1,4 @@
+# Local, account-specific files written or read by the deployment scripts.
+deploy.config.json
+.state/
+.generated/

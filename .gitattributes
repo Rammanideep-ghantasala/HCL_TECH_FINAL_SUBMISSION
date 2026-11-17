@@ -1,0 +1,3 @@
+# Preserve binary submission assets exactly, including text-based PDF streams.
+*.pdf binary
+*.png binary

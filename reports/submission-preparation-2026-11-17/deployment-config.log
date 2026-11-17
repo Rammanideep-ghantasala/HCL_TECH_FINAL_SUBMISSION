@@ -1,0 +1,21 @@
+[PASS] the shipped example sets SAVE_ENABLED=false and loads
+[PASS] SAVE_ENABLED unset, TICKET_STORE unset (json), maxTaskCount 2 (refused)
+[PASS] SAVE_ENABLED unset with one task (Fargate disk is temporary either way) (refused)
+[PASS] SAVE_ENABLED "true" (refused)
+[PASS] SAVE_ENABLED "true", TICKET_STORE "json" (refused)
+[PASS] SAVE_ENABLED " false" (the application rejects the space) (refused)
+[PASS] SAVE_ENABLED unset, TICKET_STORE "PostgreSQL" (not a value the application accepts) (refused)
+[PASS] SAVE_ENABLED "false", TICKET_STORE "JSON" (not a value the application accepts) (refused)
+[PASS] SAVE_ENABLED "false", TICKET_STORE "json" (accepted)
+[PASS] SAVE_ENABLED "False" (read as false by the application) (accepted)
+[PASS] SAVE_ENABLED "FALSE" (read as false by the application) (accepted)
+[PASS] SAVE_ENABLED "0" (read as false by the application) (accepted)
+[PASS] SAVE_ENABLED "no" (read as false by the application) (accepted)
+[PASS] SAVE_ENABLED "off" (read as false by the application) (accepted)
+[PASS] lowercase name save_enabled "false" (the application ignores case in names) (accepted)
+[PASS] SAVE_ENABLED as the JSON boolean false (accepted)
+[PASS] SAVE_ENABLED "true", TICKET_STORE "postgresql", maxTaskCount 2 (accepted)
+[PASS] SAVE_ENABLED unset, TICKET_STORE "postgresql" (accepted)
+[PASS] unsafe file with -SkipStorageCheck (05-verify, 99-cleanup can still run) (accepted)
+
+19 cases, 0 failed.

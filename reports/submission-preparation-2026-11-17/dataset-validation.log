@@ -1,0 +1,18 @@
+ 1. PASS       valid UTF-8 JSON
+ 2. PASS       root object with only a "tickets" array
+ 3. PASS       exactly 1000 records
+ 4. PASS       every record has exactly the eight application fields with correct types
+ 5. PASS       ticket ids are unique
+ 6. PASS       T-2001 to T-2960 each present exactly once, no other new ids
+ 7. PASS       only the 12 permitted categories
+ 8. PASS       category counts match the plan
+ 9. PASS       the 40 original records are first and unchanged
+10. PASS       required strings are not blank
+11. PASS       tags are valid, unique and consistently formatted
+12. PASS       dates are valid (generated ones within range)
+13. PASS       every status is "resolved"
+14. PASS       no exact duplicate subject-description pairs
+15. PASS       incoming example tickets are not copied into the history
+16. PASS       no generated Snowflake incidents
+flags for review: none
+RESULT: PASS

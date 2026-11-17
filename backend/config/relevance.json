@@ -1,0 +1,36 @@
+{
+  "version": "2026-11-17.1",
+  "hybrid": {
+    "useful_semantic_min": 0.75,
+    "useful_coverage_min": 0.3,
+    "useful_semantic_alone_min": 0.9,
+    "related_semantic_min": 0.33,
+    "related_keyword_min": 0.3
+  },
+  "keyword_only": {
+    "useful_cosine_min": 0.45,
+    "useful_coverage_min": 0.3,
+    "related_cosine_min": 0.2
+  },
+  "semantic_only": {
+    "useful_min": 0.78,
+    "related_min": 0.33
+  },
+  "calibration": {
+    "status": "tuned on the tuning query set only; provisional for any other data",
+    "tuned_on": "evaluation/data/tuning_queries.json (version 1, 28 queries)",
+    "tuned_at": "2026-11-17",
+    "corpus_sha256": "b9ebbe875f313dea5c988b56e810f00540978532baae100861061c5f02b2c95a",
+    "model": "sentence-transformers/all-MiniLM-L6-v2 @ 1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "keyword_settings": "words and two-word phrases, no stemming",
+    "method": "Read the keyword cosine, semantic cosine and coverage of the expected ticket and of the strongest other ticket for every tuning query, then chose cut points between the two groups.",
+    "observations": [
+      "Near-verbatim matches: semantic cosine 0.79 to 0.93 and coverage 0.33 to 0.61.",
+      "Queries with no useful past ticket (misleading, different product, unfamiliar): coverage 0.29 or lower, with one exception.",
+      "The exception is a negation query (semantic 0.82, coverage 0.35). Neither retriever can tell a negated symptom from the symptom itself, so it stays a false match.",
+      "Reworded matches: the expected ticket is ranked first by semantic search in 5 of 6 cases, but with semantic cosine 0.35 to 0.63 and coverage under 0.1. That overlaps the scores of unrelated tickets, so they are shown as related context, not as close matches.",
+      "useful_semantic_alone_min is set above the highest semantic cosine seen for a query with no useful past ticket (0.82)."
+    ],
+    "limits": "Cut points were chosen on 28 queries against 40 tickets. Several margins are 0.03 to 0.04 wide. They must be re-tuned whenever the tickets, the model or the keyword settings change."
+  }
+}

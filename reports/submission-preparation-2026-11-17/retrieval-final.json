@@ -1,0 +1,260 @@
+{
+  "set": "final",
+  "run_at": "2026-11-17T10:20:08+00:00",
+  "queries_total": 24,
+  "queries_with_agreed_labels": 24,
+  "queries_with_disputed_labels": [],
+  "index_version": "0c8b36ba258e",
+  "relevance_config_version": "2026-11-17.1",
+  "model": [
+    "sentence-transformers/all-MiniLM-L6-v2",
+    "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+  ],
+  "starter_kit_baseline": {
+    "ranking_only_top3_matchable": {
+      "count": 8,
+      "of": 12,
+      "rate": 0.667
+    },
+    "note": "It always returns three tickets, so it has no notion of 'no match' to measure."
+  },
+  "modes": {
+    "hybrid": {
+      "available": true,
+      "mode": "hybrid",
+      "top3_hit_rate_matchable": {
+        "count": 5,
+        "of": 12,
+        "rate": 0.417
+      },
+      "ranking_only_top3_matchable": {
+        "count": 10,
+        "of": 12,
+        "rate": 0.833
+      },
+      "shown_in_first_three_either_tier": {
+        "count": 11,
+        "of": 12,
+        "rate": 0.917
+      },
+      "false_match_rate_no_match_queries": {
+        "count": 0,
+        "of": 11,
+        "rate": 0.0
+      },
+      "by_type": {
+        "strong_match": {
+          "top3_hit": {
+            "count": 5,
+            "of": 6,
+            "rate": 0.833
+          }
+        },
+        "paraphrase": {
+          "top3_hit": {
+            "count": 0,
+            "of": 6,
+            "rate": 0.0
+          }
+        },
+        "misleading": {
+          "false_match": {
+            "count": 0,
+            "of": 4,
+            "rate": 0.0
+          }
+        },
+        "negation": {
+          "false_match": {
+            "count": 0,
+            "of": 2,
+            "rate": 0.0
+          }
+        },
+        "different_product": {
+          "false_match": {
+            "count": 0,
+            "of": 2,
+            "rate": 0.0
+          }
+        },
+        "unfamiliar": {
+          "false_match": {
+            "count": 0,
+            "of": 3,
+            "rate": 0.0
+          }
+        }
+      },
+      "vague_reported_as_insufficient_input": {
+        "count": 1,
+        "of": 1,
+        "rate": 1.0
+      },
+      "latency_ms": {
+        "n": 24,
+        "median": 64.19,
+        "p95": 161.37,
+        "max": 211.65
+      }
+    },
+    "keyword_only": {
+      "available": true,
+      "mode": "keyword_only",
+      "top3_hit_rate_matchable": {
+        "count": 5,
+        "of": 12,
+        "rate": 0.417
+      },
+      "ranking_only_top3_matchable": {
+        "count": 7,
+        "of": 12,
+        "rate": 0.583
+      },
+      "shown_in_first_three_either_tier": {
+        "count": 6,
+        "of": 12,
+        "rate": 0.5
+      },
+      "false_match_rate_no_match_queries": {
+        "count": 3,
+        "of": 11,
+        "rate": 0.273
+      },
+      "by_type": {
+        "strong_match": {
+          "top3_hit": {
+            "count": 5,
+            "of": 6,
+            "rate": 0.833
+          }
+        },
+        "paraphrase": {
+          "top3_hit": {
+            "count": 0,
+            "of": 6,
+            "rate": 0.0
+          }
+        },
+        "misleading": {
+          "false_match": {
+            "count": 0,
+            "of": 4,
+            "rate": 0.0
+          }
+        },
+        "negation": {
+          "false_match": {
+            "count": 1,
+            "of": 2,
+            "rate": 0.5
+          }
+        },
+        "different_product": {
+          "false_match": {
+            "count": 2,
+            "of": 2,
+            "rate": 1.0
+          }
+        },
+        "unfamiliar": {
+          "false_match": {
+            "count": 0,
+            "of": 3,
+            "rate": 0.0
+          }
+        }
+      },
+      "vague_reported_as_insufficient_input": {
+        "count": 1,
+        "of": 1,
+        "rate": 1.0
+      },
+      "latency_ms": {
+        "n": 24,
+        "median": 2.62,
+        "p95": 3.34,
+        "max": 4.22
+      }
+    },
+    "semantic_only": {
+      "available": true,
+      "mode": "semantic_only",
+      "top3_hit_rate_matchable": {
+        "count": 6,
+        "of": 12,
+        "rate": 0.5
+      },
+      "ranking_only_top3_matchable": {
+        "count": 12,
+        "of": 12,
+        "rate": 1.0
+      },
+      "shown_in_first_three_either_tier": {
+        "count": 12,
+        "of": 12,
+        "rate": 1.0
+      },
+      "false_match_rate_no_match_queries": {
+        "count": 1,
+        "of": 11,
+        "rate": 0.091
+      },
+      "by_type": {
+        "strong_match": {
+          "top3_hit": {
+            "count": 6,
+            "of": 6,
+            "rate": 1.0
+          }
+        },
+        "paraphrase": {
+          "top3_hit": {
+            "count": 0,
+            "of": 6,
+            "rate": 0.0
+          }
+        },
+        "misleading": {
+          "false_match": {
+            "count": 0,
+            "of": 4,
+            "rate": 0.0
+          }
+        },
+        "negation": {
+          "false_match": {
+            "count": 1,
+            "of": 2,
+            "rate": 0.5
+          }
+        },
+        "different_product": {
+          "false_match": {
+            "count": 0,
+            "of": 2,
+            "rate": 0.0
+          }
+        },
+        "unfamiliar": {
+          "false_match": {
+            "count": 0,
+            "of": 3,
+            "rate": 0.0
+          }
+        }
+      },
+      "vague_reported_as_insufficient_input": {
+        "count": 1,
+        "of": 1,
+        "rate": 1.0
+      },
+      "latency_ms": {
+        "n": 24,
+        "median": 57.47,
+        "p95": 114.85,
+        "max": 155.79
+      }
+    }
+  }
+}

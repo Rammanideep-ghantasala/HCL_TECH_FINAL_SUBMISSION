@@ -1,0 +1,35 @@
+# Keep the build context small and keep local state, secrets and tooling out of the image.
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+__MACOSX
+**/.DS_Store
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+
+# Rebuilt inside the image
+frontend/node_modules
+frontend/dist
+backend/.venv
+backend/models
+backend/artifacts
+backend/state
+
+# Not needed at run time
+backend/tests
+backend/evaluation
+deploy
+docker-compose.postgres.yml
+*.md
+starter_kit/ticket_utils.py
+starter_kit/README.md
+
+# Submission documents and optional evaluation data are not runtime assets.
+reports
+submission
+*.pdf
+tools
+starter_kit/data/tickets_1000.json

@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-17",
+  "python": "3.12.16",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "probes": [
+    {
+      "id": "S01",
+      "scenario": "Different text on existing ID during search",
+      "expected": "No ticket mutation",
+      "http": 200,
+      "id_status": "exists_different_text",
+      "store_created": false,
+      "seed_unchanged": true,
+      "status": "PASS"
+    },
+    {
+      "id": "S02",
+      "scenario": "Blind overwrite without current revision",
+      "expected": "409 and unchanged ticket",
+      "http": 409,
+      "code": "ticket_conflict",
+      "status": "PASS"
+    },
+    {
+      "id": "S03",
+      "scenario": "Unrelated content with current revision and no authentication",
+      "expected_under_requested_policy": "Reject without update",
+      "actual": "Updated the temporary target record",
+      "http": 200,
+      "keyword_cosine": 0.0,
+      "semantic_cosine": -0.04300237074494362,
+      "query_coverage": 0.0,
+      "target_id": "T-1001",
+      "status": "FAIL requested safety policy; reproduced"
+    },
+    {
+      "id": "S04",
+      "scenario": "Repeat same submission after update",
+      "expected": "Unchanged and repeat_submission true",
+      "http": 200,
+      "outcome": "unchanged",
+      "status": "PASS"
+    },
+    {
+      "id": "S05",
+      "scenario": "Embedding generation fails during save/indexing",
+      "expected_under_requested_policy": "No mutation if mandatory embedding validation fails",
+      "actual": "Record saved; indexing failed; previous snapshot retained",
+      "http": 201,
+      "index_status": "failed",
+      "status": "FAIL requested pre-execution policy; existing save-first behavior"
+    },
+    {
+      "id": "S06",
+      "scenario": "All source tickets deleted then index refreshed",
+      "expected": "Deleted records excluded",
+      "actual_ids": [
+        "AUDIT-1"
+      ],
+      "refresh": "failed",
+      "search_http": 200,
+      "search_response": null,
+      "ready_http": 200,
+      "detail_http": 404,
+      "status": "FAIL freshness expectation"
+    },
+    {
+      "id": "S07",
+      "scenario": "Save two new records with MAX_SAVED_TICKETS=1",
+      "expected": "Second new record refused",
+      "actual_http": [
+        201,
+        201
+      ],
+      "status": "FAIL configured capacity not enforced"
+    }
+  ],
+  "model": {
+    "id": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "dimension": 384,
+    "max_tokens": 256,
+    "corpus_size": 40,
+    "index_version": "0c8b36ba258e",
+    "vectors_computed": 0
+  },
+  "original_seed_unchanged": true,
+  "no_external_provider_called": true
+}

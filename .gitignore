@@ -1,0 +1,47 @@
+# Local state and build output
+node_modules/
+frontend/dist/
+.venv/
+backend/models/
+backend/artifacts/
+backend/state/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+coverage/
+htmlcov/
+*.log
+*.tsbuildinfo
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+deploy/aws/deploy.config.json
+.aws/
+.netrc
+.npmrc
+.pypirc
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local databases and backups (schema migrations remain versioned)
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.backup
+
+# OS and archive leftovers
+__MACOSX/
+.DS_Store
+Thumbs.db
+
+# Reviewed command logs accompanying the final submission evidence.
+!reports/submission-preparation-2026-11-17/*.log

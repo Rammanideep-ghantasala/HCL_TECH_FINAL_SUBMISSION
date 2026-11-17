@@ -1,0 +1,93 @@
+
+ RUN  v5.1.0 ./frontend
+
+ ✓ src/test/sourceSafety.test.ts (6 tests) 228ms
+ ✓ src/App.exact.test.tsx (3 tests) 8548ms
+   ✓ exact text matches (3)
+     ✓ labels exact matches, keeps each ticket separate and does not claim the same incident 4021ms
+     ✓ warns when a supplied ticket id already exists with different text and offers the stored version 2146ms
+     ✓ shows nothing extra for an ordinary similarity result or an older response without exact_match 2369ms
+ ✓ src/App.card.test.tsx (4 tests) 8554ms
+   ✓ result card (4)
+     ✓ displays untrusted ticket text literally and creates no elements from it 3377ms
+     ✓ shows the resolution verbatim, the evidence, unknowns as unknown, and the fixed cautions 2019ms
+     ✓ shows recorded investigation fields only when present, in the card and the full record 1891ms
+     ✓ fetches a stored ticket once, on first use, and reports a missing ticket 1263ms
+ ✓ src/App.session.test.tsx (3 tests) 9045ms
+   ✓ feedback kept in this tab (1)
+     ✓ records one verdict per result, exports it as JSON, and clears on request 5139ms
+   ✓ recent searches kept in this tab (2)
+     ✓ stores inputs only, keeps at most five, and fills the form without searching 3029ms
+     ✓ keeps searching when browser storage is blocked 875ms
+ ✓ src/App.search.test.tsx (15 tests) 16089ms
+   ✓ search requests (4)
+     ✓ shows the latest search even when an older answer arrives afterwards 3715ms
+     ✓ does not render an answer that arrives after Clear 1548ms
+     ✓ sends one request when the same ticket is submitted again while in flight 1941ms
+     ✓ stops a search that takes too long and offers Retry 439ms
+   ✓ outcomes (6)
+     ✓ renders a failure and an honest no-match as visibly different states, with one request per Retry 1561ms
+     ✓ treats an unrecognised status as a failure, not a blank screen 513ms
+     ✓ shows the keyword-only banner when retrieval is degraded 1035ms
+     ✓ shows suggestions and no cards for insufficient input, and Go to field focuses the field 401ms
+     ✓ keeps related tickets collapsed and names the active filter with a one-click way out 1148ms
+     ✓ renders results from the submitted snapshot and notes when the form was edited 1022ms
+   ✓ validation (3)
+     ✓ shows a message and sends nothing when subject and description are empty 506ms
+     ✓ blocks a field that is over its limit 328ms
+     ✓ attaches a server 422 detail to its field 880ms
+   ✓ start-up requests (2)
+     ✓ shows the server notice and fills the form from an example without searching 313ms
+     ✓ keeps working with built-in limits when settings and examples cannot be loaded 734ms
+ ✓ src/App.summary.test.tsx (15 tests) 25693ms
+   ✓ selectable matches and explicit summaries (15)
+     ✓ summarizes exactly the 3 displayed main matches only after a click 4465ms
+     ✓ summarizes exactly the 5 displayed main matches only after a click 3509ms
+     ✓ summarizes only two when Top 5 has just two qualifying matches 1643ms
+     ✓ reruns after a count change and ignores a late summary for Top 5 2035ms
+     ✓ ignores an older Top 3 search after switching to Top 5 while loading 1541ms
+     ✓ invalidates summaries on query changes 2423ms
+     ✓ invalidates summaries on category changes 2031ms
+     ✓ invalidates summaries on clear changes 1107ms
+     ✓ clears an already completed summary on count changes without automatically summarizing again 1387ms
+     ✓ keeps matches after provider failure and permits an explicit retry 1099ms
+     ✓ requires refreshing changed source records 1174ms
+     ✓ shows unconfigured summaries without disabling search 573ms
+     ✓ rejects a response containing tickets outside the displayed list 996ms
+     ✓ renders provider text as text, with no executable markup 765ms
+     ✓ times out even when transport ignores abort, and ignores its late result 936ms
+ ✓ src/App.resolution.test.tsx (25 tests) 29362ms
+   ✓ no relevant historical match (7)
+     ✓ shows the three sentences, the escalation link and Record resolution, and no previous-ticket cards 2323ms
+     ✓ links the server address help.desk@example.org as help.desk@example.org 1018ms
+     ✓ links the server address help@example.org?body=leak as ticketexpert@solar.com 570ms
+     ✓ never puts ticket text in the escalation link 1276ms
+     ✓ shows a 503 service failure as a failure with none of the no-match text 435ms
+     ✓ shows a 500 service failure as a failure with none of the no-match text 545ms
+     ✓ offers no escalation link or Record resolution for input that was too vague to search 1090ms
+   ✓ resolution form (4)
+     ✓ is prefilled from the searched snapshot, not from later edits to the search form 1818ms
+     ✓ keeps the draft across closing and reopening, and a new search closes it 1512ms
+     ✓ sends nothing and marks the fields when required fields are empty or unconfirmed 1829ms
+     ✓ checks the ticket id, category and tags patterns before sending 1752ms
+   ✓ saving a resolved ticket (14)
+     ✓ sends one request per click in the exact save shape, then shows the saved ticket once 1746ms
+     ✓ keeps the form and reuses the submission id when the agent saves again after a network failure 2140ms
+     ✓ says a ticket whose indexing failed is saved but not searchable, and retries indexing once per click 1563ms
+     ✓ shows the stored version on a ticket conflict and replaces it only after the explicit button 1311ms
+     ✓ can save as a new ticket instead after a conflict, without a ticket id 851ms
+     ✓ explains a 503 store_unavailable and keeps the form so the agent can save again 1140ms
+     ✓ explains a 503 store_full and keeps the form so the agent can save again 1054ms
+     ✓ explains a 403 save_disabled and keeps the form so the agent can save again 815ms
+     ✓ explains a 409 submission_conflict and keeps the form so the agent can save again 1033ms
+     ✓ explains a 422 validation_error and keeps the form so the agent can save again 933ms
+     ✓ explains a 500 internal_error and keeps the form so the agent can save again 968ms
+     ✓ attaches 422 field details to their fields 901ms
+     ✓ fixes Resolved by to the signed-in identity 520ms
+
+ Test Files  7 passed (7)
+      Tests  71 passed (71)
+   Start at  15:49:38
+   Duration  40.09s (tests 58%, environment 26%, setup 11%, import 3%, transform 2%, worker 1%)
+
+JUNIT report written to ./reports/submission-preparation-2026-11-17/frontend-tests.xml

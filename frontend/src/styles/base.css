@@ -1,0 +1,381 @@
+/* Design tokens, element defaults and small shared utilities. */
+
+:root {
+  --bg: #f3f5f7;
+  --surface: #ffffff;
+  --surface-alt: #f7f9fa;
+  --border: #d3d9df;
+  --border-strong: #75818e;
+  --text: #1b2631;
+  --muted: #4d5a67;
+  --accent: #1d4f7a;
+  --accent-strong: #153b5c;
+  --accent-soft: #e9f1f8;
+  --info-bg: #edf4fa;
+  --info-border: #1d4f7a;
+  --warning-bg: #fdf5df;
+  --warning-border: #8a5a00;
+  --warning-text: #573a00;
+  --error-bg: #fdeeed;
+  --error-border: #a4262c;
+  --error-text: #7d1a1f;
+  --same-text: #17573a;
+  --mark-bg: #ffe9a3;
+  --focus: #0b57d0;
+  --radius: 10px;
+  --radius-small: 6px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  line-height: 1.3;
+}
+
+p {
+  margin: 0 0 0.5rem;
+}
+
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Headings that receive focus from a script still show where focus is. */
+[tabindex="-1"]:focus {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
+}
+
+mark {
+  background: var(--mark-bg);
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -4rem;
+  z-index: 10;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-small);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+/* Ticket and server text keeps its own line breaks and never forces the page wider. */
+.ticket-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.basis,
+.hint {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.hint {
+  margin: 0.25rem 0 0;
+}
+
+.section-heading {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin: 1rem 0 0.375rem;
+}
+
+.count {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* Buttons */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.9rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-small);
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  max-width: 100%;
+}
+
+.button:hover {
+  background: var(--surface-alt);
+  border-color: var(--text);
+}
+
+.button-small {
+  min-height: 2.125rem;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.875rem;
+}
+
+.button-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.button-primary:hover {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.button-toggle[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+  color: var(--accent-strong);
+}
+
+.button-toggle[aria-pressed="true"]::before {
+  content: "\2713";
+}
+
+/* Chips: short terms shown as outlined text. */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  list-style: none;
+}
+
+.chip {
+  padding: 0.0625rem 0.6rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+/* Banners: every tone also carries a text tag. */
+
+.banner {
+  margin: 0.75rem 0;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--border-strong);
+  border-left-width: 5px;
+  border-radius: var(--radius-small);
+  background: var(--surface-alt);
+}
+
+.banner-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.625rem;
+  margin: 0;
+}
+
+.banner-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.banner-title {
+  font-weight: 700;
+  font-size: 1.0625rem;
+}
+
+.banner-body {
+  margin-top: 0.5rem;
+}
+
+.banner-body > :last-child {
+  margin-bottom: 0;
+}
+
+.banner-info {
+  background: var(--info-bg);
+  border-color: var(--info-border);
+}
+
+.banner-info .banner-tag {
+  color: var(--accent-strong);
+}
+
+.banner-warning {
+  background: var(--warning-bg);
+  border-color: var(--warning-border);
+}
+
+.banner-warning .banner-tag {
+  color: var(--warning-text);
+}
+
+.banner-error {
+  background: var(--error-bg);
+  border-color: var(--error-border);
+}
+
+.banner-error .banner-tag,
+.banner-error .banner-title {
+  color: var(--error-text);
+}
+
+.banner-neutral .banner-tag {
+  color: var(--muted);
+}
+
+/* Native disclosures */
+
+.disclosure {
+  margin-top: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-small);
+  background: var(--surface);
+}
+
+.disclosure > summary {
+  padding: 0.55rem 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.disclosure[open] > summary {
+  border-bottom: 1px solid var(--border);
+}
+
+.disclosure-body {
+  padding: 0.75rem;
+}
+
+/* Stored-record field lists */
+
+.record {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.125rem;
+}
+
+.record dt {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.record dt:first-child {
+  margin-top: 0;
+}
+
+/* Label and value on one row. */
+.record-compact {
+  grid-template-columns: minmax(7rem, max-content) minmax(0, 1fr);
+  gap: 0.25rem 1rem;
+}
+
+.record-compact dt {
+  margin-top: 0;
+}
+
+.record-compact dd {
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

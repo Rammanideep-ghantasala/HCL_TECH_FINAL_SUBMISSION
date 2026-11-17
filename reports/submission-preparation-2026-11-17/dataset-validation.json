@@ -1,0 +1,120 @@
+{
+ "dataset": "starter_kit\\data\\tickets_1000.json",
+ "passed": true,
+ "checks": [
+  {
+   "check": 1,
+   "name": "valid UTF-8 JSON",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 2,
+   "name": "root object with only a \"tickets\" array",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 3,
+   "name": "exactly 1000 records",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 4,
+   "name": "every record has exactly the eight application fields with correct types",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 5,
+   "name": "ticket ids are unique",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 6,
+   "name": "T-2001 to T-2960 each present exactly once, no other new ids",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 7,
+   "name": "only the 12 permitted categories",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 8,
+   "name": "category counts match the plan",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 9,
+   "name": "the 40 original records are first and unchanged",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 10,
+   "name": "required strings are not blank",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 11,
+   "name": "tags are valid, unique and consistently formatted",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 12,
+   "name": "dates are valid (generated ones within range)",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 13,
+   "name": "every status is \"resolved\"",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 14,
+   "name": "no exact duplicate subject-description pairs",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 15,
+   "name": "incoming example tickets are not copied into the history",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  },
+  {
+   "check": 16,
+   "name": "no generated Snowflake incidents",
+   "passed": true,
+   "failures": [],
+   "failure_count": 0
+  }
+ ],
+ "flag_counts": {},
+ "flags": []
+}

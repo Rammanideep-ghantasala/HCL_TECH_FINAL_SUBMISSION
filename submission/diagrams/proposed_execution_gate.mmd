@@ -1,0 +1,15 @@
+flowchart TB
+  START["PROPOSED ONLY<br/>Receive incoming ticket and requested operation"]
+  START -->|actor and target| AUTH["Authenticate actor and tenant<br/>Retrieve one authoritative ticket by unique ID"]
+  AUTH -->|unique authorized target| ATTR["Validate critical immutable attributes<br/>Expected revision and allowed field changes"]
+  ATTR -->|attributes agree| SCORES["Calculate lexical and semantic similarity<br/>Require independently calibrated thresholds"]
+  SCORES -->|both thresholds pass| APPROVE["Deterministic authorization<br/>Explicit confirmation bound to action digest"]
+  APPROVE -->|approved action| TX["Transaction<br/>Reserve actor-scoped idempotency key<br/>Recheck revision and authorization<br/>Execute allowlisted change"]
+  TX -->|committed| VERIFY["Read back exact target and approved fields<br/>Audit actor, reason, policy and versions"]
+  AUTH -->|failure or unavailable validation| REJECT["Reject or defer before mutation<br/>Audit reason; manual review"]
+  ATTR -->|mismatch or ambiguity| REJECT
+  SCORES -->|low score or model failure| REJECT
+  APPROVE -->|not authorized| REJECT
+  VERIFY -->|uncertain external result| RECONCILE["Reconcile before retry<br/>Outbox and provider idempotency for future integrations"]
+  RULE["Similarity cannot establish identity<br/>LLM output cannot authorize execution"]
+  RULE -.->|governs| APPROVE

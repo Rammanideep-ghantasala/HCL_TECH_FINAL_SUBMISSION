@@ -1,0 +1,14 @@
+.summary-panel {
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-alt);
+}
+.summary-panel > * + *, .summary-content > * + * { margin-top: 0.75rem; }
+.summary-content { overflow-wrap: anywhere; }
+.summary-overview, .summary-tickets, .summary-tickets ul { padding-left: 1.4rem; }
+.summary-tickets > li + li { margin-top: 1rem; }
+.summary-tickets h5 { font-size: 1rem; margin-bottom: 0.4rem; }
+.summary-source { display: inline-block; margin-right: 0.5rem; }
+.card { scroll-margin-top: 1rem; }

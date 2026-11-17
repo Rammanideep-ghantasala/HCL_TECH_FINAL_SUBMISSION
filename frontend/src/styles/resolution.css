@@ -1,0 +1,92 @@
+/* No-match next steps and the resolution form. */
+
+.next-steps {
+  margin: 0.75rem 0;
+  padding: 0.75rem 0.875rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-small);
+}
+
+.next-steps .section-heading {
+  margin-top: 0;
+}
+
+.mail-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.mail-link:hover {
+  color: var(--accent-strong);
+}
+
+.recorded {
+  margin: 0.25rem 0 0;
+  overflow-wrap: anywhere;
+}
+
+.recorded::before {
+  content: "\2713 ";
+}
+
+.resolution-panel {
+  margin: 0.75rem 0;
+  padding: 0.875rem;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-left: 5px solid var(--accent);
+  border-radius: var(--radius-small);
+}
+
+.resolution-panel > .section-heading {
+  margin-top: 0;
+  font-size: 1.0625rem;
+}
+
+.resolution-form {
+  margin-top: 0.75rem;
+}
+
+.field-tag {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.field-tag-required {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.fill-button {
+  margin-top: 0.375rem;
+}
+
+.field input[readonly],
+.field textarea[readonly] {
+  background: var(--surface-alt);
+  border-style: dashed;
+}
+
+.conflict .banner-heading {
+  font-size: 1rem;
+}
+
+.stored-version {
+  margin: 0.5rem 0;
+  padding: 0.625rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-small);
+}
+
+.conflict .form-actions {
+  margin-top: 0.5rem;
+}
+
+.save-result:focus {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}

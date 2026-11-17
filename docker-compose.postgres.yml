@@ -1,0 +1,33 @@
+# Local PostgreSQL for development and integration tests. Not for production.
+#
+#   docker compose -f docker-compose.postgres.yml up -d
+#
+# Then, from backend/ (PowerShell):
+#   $env:TICKET_STORE = "postgresql"
+#   $env:DATABASE_URL = "postgresql+psycopg://tsa:tsa-local-dev-only@127.0.0.1:55432/tsa"
+#   uv run python -m app.manage migrate
+#   uv run python -m app.manage import-json ..\starter_kit\data\tickets.json --dry-run
+#   uv run python -m app.manage import-json ..\starter_kit\data\tickets.json
+#
+# The password below is a throwaway for a database bound to 127.0.0.1 only.
+# Never reuse it anywhere else.
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: tsa
+      POSTGRES_PASSWORD: tsa-local-dev-only
+      POSTGRES_DB: tsa
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - tsa-postgres:/var/lib/postgresql/data
+      - ./deploy/postgres/create-test-database.sql:/docker-entrypoint-initdb.d/10-create-test-database.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tsa -d tsa"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  tsa-postgres:

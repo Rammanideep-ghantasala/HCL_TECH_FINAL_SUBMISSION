@@ -1,0 +1,605 @@
+{
+ "set": "final",
+ "version": "1",
+ "created": "2026-11-17",
+ "label_policy": "A past ticket is 'useful' when a careful support agent would say it describes the same problem (the same symptom in the same product area), so its recorded resolution is a sensible first thing to check. Sharing a topic or vocabulary, a different symptom, or a different product is not enough. Labels are judgements made by reading the tickets; they are not ground truth from the customer.",
+ "separation": "Queries are built only around historical tickets with an even id number, so no source ticket is shared with the tuning set.",
+ "queries": [
+  {
+   "id": "final-01",
+   "type": "strong_match",
+   "subject": "Blank screen after signing in through Okta SSO",
+   "description": "One of our users authenticates with Okta fine and gets redirected back to the application, but then all they see is an empty white page. There's no error message anywhere.",
+   "product": "Okta SSO",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1002"
+   ],
+   "acceptable_related": [
+    "T-1505"
+   ],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "T-1002 is the same symptom with the same provider: \"Customer using Okta SSO is redirected back to the app after authenticating, but the page is completely blank with no error.\" T-1505 is also SSO but a different symptom (\"given admin access instead of the standard member role\"), so it is related context only.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1002"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1002 is the same Okta SSO symptom: \"redirected back to the app after authenticating, but the page is completely blank with no error\"."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-02",
+   "type": "strong_match",
+   "subject": "Nightly sync job stuck in progress, never finishes",
+   "description": "The nightly sync for this customer's integration has had the status 'in progress' since Monday night, so more than two days now. It hasn't completed and hasn't thrown a failure either.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1102"
+   ],
+   "acceptable_related": [
+    "T-1101"
+   ],
+   "decoys": [
+    "T-1104"
+   ],
+   "expected_status": "useful_matches",
+   "rationale": "T-1102 describes the same thing: the nightly sync job \"has shown 'in progress' status for over 48 hours with no completion.\" T-1104 also mentions a nightly sync but there \"the sync ran successfully\" and data was missing, which is a different symptom; T-1101 (\"hasn't updated ... for the past 3 days\") is only loosely related sync context.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1102"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1102 matches \"nightly data sync job ... has shown 'in progress' status for over 48 hours with no completion\"; the query says in progress for more than two days with no failure."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-03",
+   "type": "strong_match",
+   "subject": "Generic error when updating credit card in account settings",
+   "description": "Customer is trying to replace the card on file with a new one. Every time they submit the payment method form in account settings it comes back with a generic error and the old card stays.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1302"
+   ],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "T-1302 is the same problem in the same place: \"Customer gets a generic error when trying to update their payment method in account settings\" under the subject \"Unable to update credit card on file.\" No other ticket concerns changing the payment method.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1302"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1302 matches \"generic error when trying to update their payment method in account settings\" for a credit card on file."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-04",
+   "type": "strong_match",
+   "subject": "PDF report export times out on full-year range",
+   "description": "Customer selects a 12-month date range and clicks export to PDF. After roughly half a minute the request fails with a timeout; shorter ranges export fine.",
+   "product": "",
+   "error_detail": "Timeout after about 30 seconds",
+   "expected_useful": [
+    "T-1402"
+   ],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1602"
+   ],
+   "expected_status": "useful_matches",
+   "rationale": "T-1402 matches symptom and feature: \"Exporting a PDF report for a full year of data fails with a timeout error after about 30 seconds.\" T-1602 shares 'date range' and slowness (\"Applying any custom date filter on the dashboard takes 10-15 seconds\") but is about dashboard filtering, not PDF export.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1402"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1402 matches \"Exporting a PDF report for a full year of data fails with a timeout error after about 30 seconds\"."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-05",
+   "type": "strong_match",
+   "subject": "Custom role permission settings revert after saving",
+   "description": "Admin set up a custom role and picked which dashboards it can access. On save the page looks like it worked, but reopening the role shows the permissions back to how they were before.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1504"
+   ],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "T-1504 is the same symptom on the same feature: \"Customer created a custom role with specific dashboard permissions, but the settings revert after saving.\" The other permission tickets describe different symptoms (empty dashboard list, viewer able to edit, deactivated user still logging in).",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1504"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1504 matches \"custom role with specific dashboard permissions, but the settings revert after saving\"."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-06",
+   "type": "strong_match",
+   "subject": "Integration hitting 429 rate limit with unchanged usage",
+   "description": "Starting a few days ago the customer's integration gets 429 rate-limit responses from our API. They say nothing changed in how often they call us.",
+   "product": "API",
+   "error_detail": "HTTP 429 Too Many Requests",
+   "expected_useful": [
+    "T-1702"
+   ],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "T-1702 is the same report: the integration \"started receiving 429 rate-limit errors even though their usage pattern hadn't changed recently.\" No other ticket concerns rate limiting.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1702"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1702 matches \"receiving 429 rate-limit errors even though their usage pattern hadn't changed recently\"."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-07",
+   "type": "paraphrase",
+   "subject": "Too many bad sign-in tries, user now blocked",
+   "description": "She mistyped her credentials several times this morning and now the system refuses to let her in at all, even with the correct ones. How do we restore her access?",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1004"
+   ],
+   "acceptable_related": [
+    "T-1001"
+   ],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "Same problem as T-1004 in different words: \"Customer is locked out after entering the wrong password a few times and wants to know how to unlock their account.\" T-1001 is a login rejection too, but its cause is a password reset (\"new password is rejected as incorrect\"), so it is related context rather than the same problem.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1004"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1004 matches \"locked out after entering the wrong password a few times and wants to know how to unlock their account\"; the query has several mistyped credentials and a blocked user."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-08",
+   "type": "paraphrase",
+   "subject": "Past 48 hours of orders absent despite completed overnight import",
+   "description": "The overnight data load finished green with no errors, yet purchases from yesterday and the day before are nowhere in the client's reporting view. Everything older looks complete.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1104"
+   ],
+   "acceptable_related": [
+    "T-1401",
+    "T-1101"
+   ],
+   "decoys": [
+    "T-1102"
+   ],
+   "expected_status": "useful_matches",
+   "rationale": "Same problem as T-1104: \"the last 2 days of transactions are missing from their dashboard even though the sync ran successfully.\" T-1401 is the export-side sibling (\"CSV export ... missing the most recent 7 days\") and T-1101 is stale data from an expired token, both related only; T-1102 is a job that never completes (\"'in progress' status for over 48 hours\"), which contradicts a completed load.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1104"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1104 matches \"last 2 days of transactions are missing from their dashboard even though the sync ran successfully\"; T-1401 (CSV export missing a week) is a different feature and is only related context."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-09",
+   "type": "paraphrase",
+   "subject": "Tiles piled on top of each other on 13-inch MacBook",
+   "description": "On my 13 inch MacBook the cards and graphs sit on top of one another and I can't make out any of the text. Same page looks fine on the big monitor at the office.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1202"
+   ],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "Same problem as T-1202 with different vocabulary: \"On a laptop with a smaller resolution, several dashboard widgets visually overlap and are unreadable.\" The query's small notebook versus large monitor contrast is exactly the fixed-width layout case that ticket records.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1202"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1202 matches \"On a laptop with a smaller resolution, several dashboard widgets visually overlap and are unreadable\"; the query has cards and graphs on top of one another on a 13-inch laptop."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-10",
+   "type": "paraphrase",
+   "subject": "Still paying the pricier tier after switching to cheaper one",
+   "description": "We asked in October to be moved to the lower-cost tier and your team confirmed it. This month's statement still has the previous, more expensive amount on it.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1304"
+   ],
+   "acceptable_related": [
+    "T-1301",
+    "T-1305"
+   ],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "Same problem as T-1304: \"Customer requested a plan downgrade last month but was billed at the old, higher rate again.\" T-1301 (\"bills for 25 seats but they say they only have 18\") and T-1305 (\"discount ... not applied at checkout\") are other wrong-amount billing issues with different causes, so related context only.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1304"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1304 matches \"requested a plan downgrade last month but was billed at the old, higher rate again\"; the query moved to a lower-cost tier and is still billed the more expensive amount."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-11",
+   "type": "paraphrase",
+   "subject": "Automated 7am summaries not delivered until lunchtime on busy weekdays",
+   "description": "Our 7am automated summaries have been landing in inboxes around midday instead, but only on weekdays when the whole company is online first thing. The weekend ones show up on schedule.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1604"
+   ],
+   "acceptable_related": [
+    "T-1403"
+   ],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "Same problem as T-1604: \"scheduled reports are arriving hours late during the company's peak usage window each morning.\" T-1403 is about a report that \"stopped arriving\" entirely (\"hasn't gotten one in 3 weeks\"), a different symptom, so it is related context only.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1604"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1604 matches \"scheduled reports are arriving hours late during the company's peak usage window each morning\"; T-1403 (report \"stopped arriving\" entirely) is a different symptom and is only related context."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-12",
+   "type": "paraphrase",
+   "subject": "Person who left the company can still get in",
+   "description": "We disabled a staff member's profile on Friday when he quit, but our audit trail shows him signing in over the weekend. We need this shut off urgently.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [
+    "T-1502"
+   ],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "useful_matches",
+   "rationale": "Same problem as T-1502: the admin \"tried to deactivate a former employee's account but the user still appears able to log in.\" Its resolution about active sessions not being invalidated is the sensible first thing to check here.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [
+     "T-1502"
+    ],
+    "expected_status": "useful_matches",
+    "confidence": "high",
+    "note": "T-1502 matches \"tried to deactivate a former employee's account but the user still appears able to log in\"."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-13",
+   "type": "misleading",
+   "subject": "Custom date range picker won't allow dates before 2024",
+   "description": "When the customer picks a custom date range for the chart, the calendar greys out everything earlier than January 2024. They have data going back to 2021 and need to chart it.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1204",
+    "T-1602"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1204 shares 'custom date range' and 'chart' but its symptom is that \"the chart continues showing the previous default range's data\" (a cache-key bug); here the range cannot be selected at all. T-1602 is about the date filter being slow (\"takes 10-15 seconds to update\"), also a different symptom.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "medium",
+    "note": "The query's calendar \"greys out everything earlier than January 2024\" (cannot select old dates), whereas T-1204 is \"chart continues showing the previous default range's data\" after selecting; same feature, different symptom, so T-1204 is related context only."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-14",
+   "type": "misleading",
+   "subject": "Exported CSV revenue figures turn into dates in Excel",
+   "description": "When the customer opens the exported CSV in Excel, the total revenue figures for the period get auto-converted into dates and scientific notation. The same file looks right in a plain text editor.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1404"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1404 shares 'exported CSV' and 'total revenue figure' but concerns a real data difference (\"noticeably different from what's shown on the live dashboard\", caused by \"including cancelled orders\"). Here the file content is correct and a spreadsheet program is reformatting it, which no ticket covers.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "Figures \"auto-converted into dates and scientific notation\" in Excel is a formatting problem; T-1404 (\"different from what's shown on the live dashboard\") is a data discrepancy and only shares CSV/revenue vocabulary."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-15",
+   "type": "misleading",
+   "subject": "Webhook payload signature never validates on our endpoint",
+   "description": "We're computing the HMAC over the webhook payload we receive using the secret from the settings page, and it never equals the value in the signature header. Is there an expected field ordering or encoding?",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [
+    "T-1701"
+   ],
+   "decoys": [
+    "T-1704"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1704 shares 'webhook payload' and 'expected fields' but is about a field that is \"sometimes missing from the webhook payload\"; nothing in the history covers signature verification. T-1701 (\"silently misses some events during high-traffic periods\") is webhook delivery context only.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "The HMAC \"never equals the value in the signature header\" is signature verification; T-1704 (\"field ... sometimes missing from the webhook payload\") and T-1701 (missed deliveries) are different webhook symptoms."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-16",
+   "type": "misleading",
+   "subject": "How to cancel a sync job that is in progress",
+   "description": "Customer started a manual sync for the wrong integration about ten minutes ago and its status shows 'in progress'. They want to stop it before it completes rather than wait.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1102"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1102 shares 'sync job' and 'in progress' but describes a hung job (\"'in progress' status for over 48 hours with no completion\", fixed by handling \"a malformed record\"). This is a healthy ten-minute-old job and a how-to question about cancelling, which that resolution does not answer.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "medium",
+    "note": "The customer \"want to stop it before it completes\" ten minutes into a manual sync, a how-to cancel request; T-1102 is a job hung for 48 hours and only shares the 'in progress' wording."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-17",
+   "type": "negation",
+   "subject": "No 429s or rate limiting, but API calls very slow",
+   "description": "Our integration is not getting any rate-limit errors and every request returns 200. The problem is each call now takes 8 to 10 seconds to respond where it used to take well under one.",
+   "product": "API",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1702",
+    "T-1602"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1702's key symptom, \"receiving 429 rate-limit errors\", is explicitly absent here. T-1602 has similar wording (\"takes 10-15 seconds to update, compared to under a second previously\") but is about the dashboard date filter, not API response time; no ticket covers slow API responses.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "The query says \"not getting any rate-limit errors and every request returns 200\" but calls take 8 to 10 seconds; T-1702 (429s) and T-1703 (500s) are different symptoms, and the perf tickets concern dashboard, filter and search, not API latency."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-18",
+   "type": "negation",
+   "subject": "Full-year PDF export finishes fine but pages are empty",
+   "description": "The PDF report for a full year exports in a few seconds with no timeout or error. But when the customer opens the downloaded file every page is empty, just the header and footer.",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [
+    "T-1402"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1402's symptom is that the full-year PDF export \"fails with a timeout error after about 30 seconds\"; here the export completes quickly and the fault is empty content. Moving exports to an async job would not help, and no other ticket covers empty export files.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "The export completes \"in a few seconds with no timeout or error\" but \"every page is empty\"; T-1402 is a timeout failure, and T-1201 (blank revenue chart on the dashboard) is a different feature."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-19",
+   "type": "different_product",
+   "subject": "Microsoft Entra ID SSO login lands on blank page",
+   "description": "Customer set up SSO with Microsoft Entra ID (Azure AD). After authenticating with Microsoft they are sent back to our app but only get a blank page, no error shown.",
+   "product": "Microsoft Entra ID (Azure AD) SSO",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [
+    "T-1002"
+   ],
+   "decoys": [
+    "T-1002"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1002 has the same symptom pattern but is specifically \"Customer using Okta SSO\", resolved by \"remapping the attribute in Okta admin console\". Entra ID appears nowhere in the history, so under the label policy T-1002 is fine as related context but must not count as a useful match (hence listed in both acceptable_related and decoys).",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "low",
+    "note": "Same symptom as T-1002 (\"redirected back ... completely blank with no error\") but the query names \"Microsoft Entra ID (Azure AD)\" while T-1002 and its fix are Okta-specific, so under the different-integration rule it is related context only; borderline, since a SAML attribute-mapping check could plausibly carry over."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-20",
+   "type": "different_product",
+   "subject": "Generic error when linking PayPal as payment method",
+   "description": "Customer wants to pay via PayPal instead of card. When they pick PayPal under payment method in account settings and confirm, they get a generic 'something went wrong' error.",
+   "product": "PayPal",
+   "error_detail": "Something went wrong",
+   "expected_useful": [],
+   "acceptable_related": [
+    "T-1302"
+   ],
+   "decoys": [
+    "T-1302"
+   ],
+   "expected_status": "no_strong_match",
+   "rationale": "T-1302 has the same symptom pattern (\"generic error when trying to update their payment method in account settings\") but is about a credit card, and its fix was card-form specific: \"billing zip code format (Canadian postal code) wasn't accepted by the payment form's validation\". PayPal appears nowhere in the history, so T-1302 is related context only (listed in both acceptable_related and decoys).",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "medium",
+    "note": "The query is \"linking PayPal as payment method\", whereas T-1302 is about updating a credit card and its cause was card billing postal-code validation; same settings page and generic error, different payment product, so related context only."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-21",
+   "type": "unfamiliar",
+   "subject": "Slack alert for revenue threshold never posts to channel",
+   "description": "We set up an alert to notify our #finance Slack channel when daily revenue drops below a threshold. The condition has been met three times this week and nothing was posted.",
+   "product": "Slack",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "no_strong_match",
+   "rationale": "No ticket mentions Slack or threshold alerts. The nearest notification tickets are a different feature: T-1403 is a \"weekly summary report by email\" and T-1701 is \"webhook events\" to a customer endpoint.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "A threshold alert where \"nothing was posted\" to a Slack channel has no counterpart; no historical ticket covers alerts or Slack, and T-1701/T-1403 concern outbound webhooks and scheduled email reports."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-22",
+   "type": "unfamiliar",
+   "subject": "Need signed BAA for HIPAA compliance review",
+   "description": "Our compliance team is onboarding your tool for a healthcare client and needs a signed Business Associate Agreement plus any HIPAA attestation you have. Who do we contact?",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "no_strong_match",
+   "rationale": "This is a compliance document request, not a product fault. None of the 40 tickets concern legal or compliance paperwork; the only 'security' mentions are access issues such as T-1502's \"deactivate a former employee's account\".",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "A request for a \"signed Business Associate Agreement plus any HIPAA attestation\" is a compliance/legal request and no historical ticket covers compliance documents."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-23",
+   "type": "unfamiliar",
+   "subject": "Embedded dashboard iframe refused on our company portal",
+   "description": "Trying to embed a dashboard on our company portal with an iframe. The frame stays empty and the browser console says the content was refused because of the frame policy.",
+   "product": "",
+   "error_detail": "Refused to display in a frame because it set 'X-Frame-Options' to 'sameorigin'",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "no_strong_match",
+   "rationale": "No ticket covers embedding dashboards in an external site. The dashboard tickets that exist are in-app problems such as T-1202 (\"widgets visually overlap\") and none mention iframes or frame headers.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "no_strong_match",
+    "confidence": "high",
+    "note": "\"Refused to display in a frame because it set 'X-Frame-Options' to 'sameorigin'\" is an embedding/frame-policy issue; no historical ticket covers embedding, and the blank-rendering tickets (T-1201, T-1205) have different causes and symptoms."
+   },
+   "agreed": true
+  },
+  {
+   "id": "final-24",
+   "type": "vague",
+   "subject": "Not working, please help",
+   "description": "",
+   "product": "",
+   "error_detail": "",
+   "expected_useful": [],
+   "acceptable_related": [],
+   "decoys": [],
+   "expected_status": "insufficient_input",
+   "rationale": "Four generic words with no feature, symptom or product named, so no ticket can be judged similar. Any of the 40 tickets could loosely be described as something 'not working'.",
+   "label_source": "written and labelled for this evaluation; labelled again independently without sight of the first labels",
+   "reviewer": {
+    "useful": [],
+    "expected_status": "insufficient_input",
+    "confidence": "high",
+    "note": "The subject \"Not working, please help\" with an empty description names no product area, feature or symptom to search on."
+   },
+   "agreed": true
+  }
+ ]
+}

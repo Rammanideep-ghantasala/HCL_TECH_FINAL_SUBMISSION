@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="71" failures="0" errors="0" time="97.5183626">
+    <testsuite name="src/App.card.test.tsx" timestamp="2026-11-17T10:20:18.986Z" tests="4" failures="0" errors="0" skipped="0" time="8.5541991">
+        <testcase classname="src/App.card.test.tsx" name="result card &gt; displays untrusted ticket text literally and creates no elements from it" time="3.3773311">
+        </testcase>
+        <testcase classname="src/App.card.test.tsx" name="result card &gt; shows the resolution verbatim, the evidence, unknowns as unknown, and the fixed cautions" time="2.0190291">
+        </testcase>
+        <testcase classname="src/App.card.test.tsx" name="result card &gt; shows recorded investigation fields only when present, in the card and the full record" time="1.8905973">
+        </testcase>
+        <testcase classname="src/App.card.test.tsx" name="result card &gt; fetches a stored ticket once, on first use, and reports a missing ticket" time="1.2631185">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/App.exact.test.tsx" timestamp="2026-11-17T10:20:18.998Z" tests="3" failures="0" errors="0" skipped="0" time="8.5478492">
+        <testcase classname="src/App.exact.test.tsx" name="exact text matches &gt; labels exact matches, keeps each ticket separate and does not claim the same incident" time="4.0213739">
+        </testcase>
+        <testcase classname="src/App.exact.test.tsx" name="exact text matches &gt; warns when a supplied ticket id already exists with different text and offers the stored version" time="2.1464094">
+        </testcase>
+        <testcase classname="src/App.exact.test.tsx" name="exact text matches &gt; shows nothing extra for an ordinary similarity result or an older response without exact_match" time="2.3689914">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/App.resolution.test.tsx" timestamp="2026-11-17T10:20:19.000Z" tests="25" failures="0" errors="0" skipped="0" time="29.3617219">
+        <testcase classname="src/App.resolution.test.tsx" name="no relevant historical match &gt; shows the three sentences, the escalation link and Record resolution, and no previous-ticket cards" time="2.3226497">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="no relevant historical match &gt; links the server address help.desk@example.org as help.desk@example.org" time="1.0179289">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="no relevant historical match &gt; links the server address help@example.org?body=leak as ticketexpert@solar.com" time="0.5699141">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="no relevant historical match &gt; never puts ticket text in the escalation link" time="1.2760025">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="no relevant historical match &gt; shows a 503 service failure as a failure with none of the no-match text" time="0.4349019">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="no relevant historical match &gt; shows a 500 service failure as a failure with none of the no-match text" time="0.5452957">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="no relevant historical match &gt; offers no escalation link or Record resolution for input that was too vague to search" time="1.0903918">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="resolution form &gt; is prefilled from the searched snapshot, not from later edits to the search form" time="1.818485">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="resolution form &gt; keeps the draft across closing and reopening, and a new search closes it" time="1.5118675">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="resolution form &gt; sends nothing and marks the fields when required fields are empty or unconfirmed" time="1.828501">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="resolution form &gt; checks the ticket id, category and tags patterns before sending" time="1.7515374">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; sends one request per click in the exact save shape, then shows the saved ticket once" time="1.7455747">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; keeps the form and reuses the submission id when the agent saves again after a network failure" time="2.1395583">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; says a ticket whose indexing failed is saved but not searchable, and retries indexing once per click" time="1.5631293">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; shows the stored version on a ticket conflict and replaces it only after the explicit button" time="1.311379">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; can save as a new ticket instead after a conflict, without a ticket id" time="0.8505172">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; explains a 503 store_unavailable and keeps the form so the agent can save again" time="1.1402346">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; explains a 503 store_full and keeps the form so the agent can save again" time="1.0537635">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; explains a 403 save_disabled and keeps the form so the agent can save again" time="0.8154095">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; explains a 409 submission_conflict and keeps the form so the agent can save again" time="1.0334462">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; explains a 422 validation_error and keeps the form so the agent can save again" time="0.9327325">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; explains a 500 internal_error and keeps the form so the agent can save again" time="0.9680762">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; attaches 422 field details to their fields" time="0.9006991">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; fixes Resolved by to the signed-in identity" time="0.5203491">
+        </testcase>
+        <testcase classname="src/App.resolution.test.tsx" name="saving a resolved ticket &gt; does not offer recording when the server has saving switched off" time="0.2098197">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/App.search.test.tsx" timestamp="2026-11-17T10:20:19.011Z" tests="15" failures="0" errors="0" skipped="0" time="16.0890331">
+        <testcase classname="src/App.search.test.tsx" name="search requests &gt; shows the latest search even when an older answer arrives afterwards" time="3.7148312">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="search requests &gt; does not render an answer that arrives after Clear" time="1.5481984">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="search requests &gt; sends one request when the same ticket is submitted again while in flight" time="1.9410213">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="search requests &gt; stops a search that takes too long and offers Retry" time="0.439429">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="outcomes &gt; renders a failure and an honest no-match as visibly different states, with one request per Retry" time="1.5613608">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="outcomes &gt; treats an unrecognised status as a failure, not a blank screen" time="0.5134293">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="outcomes &gt; shows the keyword-only banner when retrieval is degraded" time="1.0351693">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="outcomes &gt; shows suggestions and no cards for insufficient input, and Go to field focuses the field" time="0.4012637">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="outcomes &gt; keeps related tickets collapsed and names the active filter with a one-click way out" time="1.1482072">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="outcomes &gt; renders results from the submitted snapshot and notes when the form was edited" time="1.022325">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="validation &gt; shows a message and sends nothing when subject and description are empty" time="0.5063989">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="validation &gt; blocks a field that is over its limit" time="0.3276139">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="validation &gt; attaches a server 422 detail to its field" time="0.8797669">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="start-up requests &gt; shows the server notice and fills the form from an example without searching" time="0.3125038">
+        </testcase>
+        <testcase classname="src/App.search.test.tsx" name="start-up requests &gt; keeps working with built-in limits when settings and examples cannot be loaded" time="0.7337576">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/App.session.test.tsx" timestamp="2026-11-17T10:20:19.018Z" tests="3" failures="0" errors="0" skipped="0" time="9.0451061">
+        <testcase classname="src/App.session.test.tsx" name="feedback kept in this tab &gt; records one verdict per result, exports it as JSON, and clears on request" time="5.1388135">
+        </testcase>
+        <testcase classname="src/App.session.test.tsx" name="recent searches kept in this tab &gt; stores inputs only, keeps at most five, and fills the form without searching" time="3.0287448">
+        </testcase>
+        <testcase classname="src/App.session.test.tsx" name="recent searches kept in this tab &gt; keeps searching when browser storage is blocked" time="0.874857">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/App.summary.test.tsx" timestamp="2026-11-17T10:20:19.019Z" tests="15" failures="0" errors="0" skipped="0" time="25.692613">
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; summarizes exactly the 3 displayed main matches only after a click" time="4.4651068">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; summarizes exactly the 5 displayed main matches only after a click" time="3.5092115">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; summarizes only two when Top 5 has just two qualifying matches" time="1.643259">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; reruns after a count change and ignores a late summary for Top 5" time="2.0348023">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; ignores an older Top 3 search after switching to Top 5 while loading" time="1.5410706">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; invalidates summaries on query changes" time="2.4227028">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; invalidates summaries on category changes" time="2.0309306">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; invalidates summaries on clear changes" time="1.1068956">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; clears an already completed summary on count changes without automatically summarizing again" time="1.3865374">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; keeps matches after provider failure and permits an explicit retry" time="1.0985863">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; requires refreshing changed source records" time="1.1739896">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; shows unconfigured summaries without disabling search" time="0.5727152">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; rejects a response containing tickets outside the displayed list" time="0.9964225">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; renders provider text as text, with no executable markup" time="0.7650484">
+        </testcase>
+        <testcase classname="src/App.summary.test.tsx" name="selectable matches and explicit summaries &gt; times out even when transport ignores abort, and ignores its late result" time="0.9363721">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/test/sourceSafety.test.ts" timestamp="2026-11-17T10:20:19.025Z" tests="6" failures="0" errors="0" skipped="0" time="0.2278402">
+        <testcase classname="src/test/sourceSafety.test.ts" name="source safety scan &gt; finds source files to scan" time="0.0180038">
+        </testcase>
+        <testcase classname="src/test/sourceSafety.test.ts" name="source safety scan &gt; contains no raw HTML injection prop anywhere in src" time="0.0716338">
+        </testcase>
+        <testcase classname="src/test/sourceSafety.test.ts" name="source safety scan &gt; contains no inline style attribute anywhere in src" time="0.0417006">
+        </testcase>
+        <testcase classname="src/test/sourceSafety.test.ts" name="source safety scan &gt; contains no element HTML assignment anywhere in src" time="0.0373994">
+        </testcase>
+        <testcase classname="src/test/sourceSafety.test.ts" name="source safety scan &gt; contains no document write anywhere in src" time="0.0276906">
+        </testcase>
+        <testcase classname="src/test/sourceSafety.test.ts" name="source safety scan &gt; contains no dynamic code evaluation anywhere in src" time="0.028557">
+        </testcase>
+    </testsuite>
+</testsuites>
